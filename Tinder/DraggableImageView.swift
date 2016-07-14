@@ -8,12 +8,17 @@
 
 import UIKit
 
+@objc protocol DraggableImageViewDelegate {
+  optional func draggableImageViewDidTapPhoto(draggableImageView: DraggableImageView)
+}
+
 class DraggableImageView: UIView {
 
   @IBOutlet var contentView: UIView!
   @IBOutlet weak var photoImageView: UIImageView!
 
   var initialPhotoCenter: CGPoint!
+  weak var delegate: DraggableImageViewDelegate?
 
   required init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
@@ -71,6 +76,10 @@ class DraggableImageView: UIView {
         break
       }
     }
+  }
+
+  @IBAction func onPhotoTapped(sender: UITapGestureRecognizer) {
+    delegate?.draggableImageViewDidTapPhoto?(self)
   }
 
 }

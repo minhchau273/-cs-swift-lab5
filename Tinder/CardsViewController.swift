@@ -8,13 +8,19 @@
 
 import UIKit
 
-class CardsViewController: UIViewController {
+class CardsViewController: UIViewController, DraggableImageViewDelegate {
 
   @IBOutlet weak var draggableImageView: DraggableImageView!
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    draggableImageView.delegate = self
+  }
 
+  func draggableImageViewDidTapPhoto(draggableImageView: DraggableImageView) {
+    let profileVC = ProfileViewController()
+    profileVC.photoImage = draggableImageView.photoImageView.image
+    presentViewController(profileVC, animated: true, completion: nil)
   }
 
 }

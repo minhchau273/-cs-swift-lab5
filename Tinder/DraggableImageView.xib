@@ -21,6 +21,7 @@
                     <gestureRecognizers/>
                     <connections>
                         <outletCollection property="gestureRecognizers" destination="6us-1F-goS" appends="YES" id="Dda-Hl-1KK"/>
+                        <outletCollection property="gestureRecognizers" destination="O88-oB-ybm" appends="YES" id="vyH-l3-DPK"/>
                     </connections>
                 </imageView>
             </subviews>
@@ -34,6 +35,11 @@
                 <action selector="onPhotoPanGesture:" destination="-1" id="SkQ-ek-Cpw"/>
             </connections>
         </panGestureRecognizer>
+        <tapGestureRecognizer id="O88-oB-ybm">
+            <connections>
+                <action selector="onPhotoTapped:" destination="-1" id="3d9-du-o5S"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="ryan" width="224" height="257"/>
