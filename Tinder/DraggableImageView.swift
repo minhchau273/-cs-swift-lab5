@@ -50,6 +50,23 @@ class DraggableImageView: UIView {
 
         photoImageView.transform = CGAffineTransformMakeRotation(angle)
 
+      case .Ended:
+        if translation.x > -50 && translation.x < 50 {
+          photoImageView.center = initialPhotoCenter
+          photoImageView.transform = CGAffineTransformIdentity
+        } else {
+          let outScreenX = translation.x >= 50 ? photoImageView.center.x + 304 : photoImageView.center.x - 304
+
+          UIView.animateWithDuration(0.5, animations: {
+            self.photoImageView.alpha = 0
+            self.photoImageView.center = CGPoint(x: outScreenX, y: self.photoImageView.center.y)
+            }, completion: { finished in
+              self.photoImageView.center = self.initialPhotoCenter
+              self.photoImageView.transform = CGAffineTransformIdentity
+              self.photoImageView.alpha = 1
+          })
+        }
+
       default:
         break
       }
