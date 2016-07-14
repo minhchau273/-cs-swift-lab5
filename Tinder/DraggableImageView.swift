@@ -40,8 +40,16 @@ class DraggableImageView: UIView {
       switch state {
       case .Began:
         initialPhotoCenter = photoImageView.center
+
       case .Changed:
         photoImageView.center = CGPoint(x: initialPhotoCenter.x + translation.x, y: initialPhotoCenter.y)
+
+        var angle = CGFloat(M_PI) * translation.x / 304
+        let dragInBottomHalf = sender.locationInView(self).y > initialPhotoCenter.y
+        angle = dragInBottomHalf ? -angle : angle
+
+        photoImageView.transform = CGAffineTransformMakeRotation(angle)
+
       default:
         break
       }
