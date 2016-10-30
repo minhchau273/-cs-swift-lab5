@@ -20,8 +20,8 @@ class ProfileViewController: UIViewController {
     }
   }
 
-  @IBAction func onNavigationBarTapped(sender: UITapGestureRecognizer) {
-    dismissViewControllerAnimated(true, completion: nil)
+  @IBAction func onNavigationBarTapped(_ sender: UITapGestureRecognizer) {
+    dismiss(animated: true, completion: nil)
   }
 
 }

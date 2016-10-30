@@ -17,10 +17,10 @@ class CardsViewController: UIViewController, DraggableImageViewDelegate {
     draggableImageView.delegate = self
   }
 
-  func draggableImageViewDidTapPhoto(draggableImageView: DraggableImageView) {
+  func draggableImageViewDidTapPhoto(_ draggableImageView: DraggableImageView) {
     let profileVC = ProfileViewController()
     profileVC.photoImage = draggableImageView.photoImageView.image
-    presentViewController(profileVC, animated: true, completion: nil)
+    present(profileVC, animated: true, completion: nil)
   }
 
 }

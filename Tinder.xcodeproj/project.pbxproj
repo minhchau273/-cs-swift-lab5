@@ -109,6 +109,7 @@
 					A5ECE3991D377203005999B2 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = D3E7UH3PXS;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -272,6 +273,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cheetah.Tinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -283,6 +285,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cheetah.Tinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -305,6 +308,7 @@
 				A5ECE3AE1D377203005999B2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

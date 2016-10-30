@@ -9,7 +9,7 @@
 import UIKit
 
 @objc protocol DraggableImageViewDelegate {
-  optional func draggableImageViewDidTapPhoto(draggableImageView: DraggableImageView)
+  @objc optional func draggableImageViewDidTapPhoto(_ draggableImageView: DraggableImageView)
 }
 
 class DraggableImageView: UIView {
@@ -32,42 +32,42 @@ class DraggableImageView: UIView {
 
   func initSubviews() {
     let nib = UINib(nibName: "DraggableImageView", bundle: nil)
-    nib.instantiateWithOwner(self, options: nil)
+    nib.instantiate(withOwner: self, options: nil)
     contentView.frame = bounds
     addSubview(contentView)
   }
 
-  @IBAction func onPhotoPanGesture(sender: UIPanGestureRecognizer) {
+  @IBAction func onPhotoPanGesture(_ sender: UIPanGestureRecognizer) {
     if let view = superview {
       let state = sender.state
-      let translation = sender.translationInView(view)
+      let translation = sender.translation(in: view)
 
       switch state {
-      case .Began:
+      case .began:
         initialPhotoCenter = photoImageView.center
 
-      case .Changed:
+      case .changed:
         photoImageView.center = CGPoint(x: initialPhotoCenter.x + translation.x, y: initialPhotoCenter.y)
 
         var angle = CGFloat(M_PI) * translation.x / 304
-        let dragInBottomHalf = sender.locationInView(self).y > initialPhotoCenter.y
+        let dragInBottomHalf = sender.location(in: self).y > initialPhotoCenter.y
         angle = dragInBottomHalf ? -angle : angle
 
-        photoImageView.transform = CGAffineTransformMakeRotation(angle)
+        photoImageView.transform = CGAffineTransform(rotationAngle: angle)
 
-      case .Ended:
+      case .ended:
         if translation.x > -50 && translation.x < 50 {
           photoImageView.center = initialPhotoCenter
-          photoImageView.transform = CGAffineTransformIdentity
+          photoImageView.transform = CGAffineTransform.identity
         } else {
           let outScreenX = translation.x >= 50 ? photoImageView.center.x + 304 : photoImageView.center.x - 304
 
-          UIView.animateWithDuration(0.5, animations: {
+          UIView.animate(withDuration: 0.5, animations: {
             self.photoImageView.alpha = 0
             self.photoImageView.center = CGPoint(x: outScreenX, y: self.photoImageView.center.y)
             }, completion: { finished in
               self.photoImageView.center = self.initialPhotoCenter
-              self.photoImageView.transform = CGAffineTransformIdentity
+              self.photoImageView.transform = CGAffineTransform.identity
               self.photoImageView.alpha = 1
           })
         }
@@ -78,7 +78,7 @@ class DraggableImageView: UIView {
     }
   }
 
-  @IBAction func onPhotoTapped(sender: UITapGestureRecognizer) {
+  @IBAction func onPhotoTapped(_ sender: UITapGestureRecognizer) {
     delegate?.draggableImageViewDidTapPhoto?(self)
   }
 
