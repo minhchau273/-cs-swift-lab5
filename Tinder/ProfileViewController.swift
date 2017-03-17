@@ -9,19 +9,19 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
-
-  @IBOutlet weak var photoImageView: UIImageView!
-  var photoImage: UIImage!
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    if photoImage != nil {
-      photoImageView.image = photoImage
+    
+    @IBOutlet weak var photoImageView: UIImageView!
+    var photoImage: UIImage!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if photoImage != nil {
+            photoImageView.image = photoImage
+        }
     }
-  }
-
-  @IBAction func onNavigationBarTapped(_ sender: UITapGestureRecognizer) {
-    dismiss(animated: true, completion: nil)
-  }
-
+    
+    @IBAction func onNavigationBarTapped(_ sender: UITapGestureRecognizer) {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
